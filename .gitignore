@@ -1,4 +1,4 @@
 composer.lock
 vendor/*
-!test/log/README
 test/log/*
+!test/log/README
