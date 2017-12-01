@@ -2,7 +2,7 @@
         "name": "atk14/logger",
         "type": "library",
         "description": "ATK14 Logger provides logging infrastructure for the ATK14 Framework",
-        "keywords": ["string"],
+        "keywords": ["logger","atk14"],
         "homepage": "https://github.com/atk14/Logger",
         "license": ["MIT"],
         "authors": [
