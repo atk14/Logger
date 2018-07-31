@@ -13,11 +13,11 @@
         ],
         "require": {
                 "php": ">=5.3.0",
-                "atk14/translate": "*"
+                "atk14/sendmail": "1.* >=1.0.1"
         },
         "require-dev": {
                 "atk14/files": "*",
-                "atk14/sendmail": "*"
+                "phpunit/phpunit": "4.8.*"
         },
         "autoload": {
                 "classmap": ["src"]
