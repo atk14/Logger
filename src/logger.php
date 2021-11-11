@@ -191,7 +191,12 @@ class Logger{
 	 *
 	 * @var internal
 	 */
-	private $_started_at_time = null;	
+	private $_started_at_time = null;
+
+	/**
+	 * @access private
+	 */
+	var $_log_to_file = true;
 
 	/**
 	 * @access private
@@ -244,7 +249,8 @@ class Logger{
 	 * @param array $options
 	 * - disable_start_and_stop_marks (false) - whether start and stop marks show up in output
 	 * - default_log_file - filename where to write logs
-	 * - log_to_stdout (false) - log messages to STDOUT instead of a log file
+	 * - log_to_stdout (false) - log messages to STDOUT
+	 * - log_to_file - log messages to a log file; by default it is true, when log_to_stdout is false
 	 * - automatically_log_to_stdout_on_terminal (false) - log messages to a log file and also to STDOUT when we are on TERMINAL
 	 * - default_notify_email
 	 */
@@ -254,15 +260,20 @@ class Logger{
 		}else{
 			$options["prefix"] = $prefix_or_options;
 		}
-
+		
 		$options = array_merge(array(
 			"prefix" => "",
 			"disable_start_and_stop_marks" => false,
 			"default_log_file" => LOGGER_DEFAULT_LOG_FILE,
 			"log_to_stdout" => false,
+			"log_to_file" => null,
 			"automatically_log_to_stdout_on_terminal" => false,
 			"default_notify_email" => LOGGER_DEFAULT_NOTIFY_EMAIL,
 		),$options);
+
+		if(is_null($options["log_to_file"])){
+			$options["log_to_file"] = !$options["log_to_stdout"];
+		}
 
 		$this->_default_log_file = $options["default_log_file"];
 
@@ -270,8 +281,8 @@ class Logger{
 		$this->_my_pid = posix_getpid();
 
 		$this->set_prefix($options["prefix"]);
-		if($options["log_to_stdout"]){ $this->_log_file = "php://stdout"; }
 		$this->_log_to_stdout = $options["log_to_stdout"];
+		$this->_log_to_file = $options["log_to_file"];
 		$this->_automatically_log_to_stdout_on_terminal = $options["automatically_log_to_stdout_on_terminal"];
 		$this->_disable_start_and_stop_marks = $options["disable_start_and_stop_marks"];
 		$this->_default_notify_email = $options["default_notify_email"];
@@ -421,7 +432,7 @@ class Logger{
 	 *
 	 * @param integer|string $level
 	 * @return string color hex code
-	 * @see $_colors
+	 * @see self::$_colors
 	 */
 	function level_to_color($level){
 		if(is_numeric($level)){ $level = $this->level_to_str($level); }
@@ -458,7 +469,8 @@ class Logger{
 
 		$_log_file_existed = file_exists($this->_log_file);
 
-		$fp = fopen($this->_log_file,"a");
+		if($this->_log_to_file){
+		}
 
 		if(!$this->_notify_level_reached){
 			foreach($this->_log_store as $rec){
@@ -469,6 +481,8 @@ class Logger{
 			}
 		}
 
+		$fp = null;
+
 		foreach($this->_log_store as $rec){
 
 			$this->_log_store_whole[] = $rec;
@@ -478,16 +492,26 @@ class Logger{
 			}
 
 			$str = $this->_build_message($rec);
-			fwrite($fp,$str,strlen($str));
+			if($this->_log_to_stdout){
+				echo $str;
+			}
+			if($this->_log_to_file){
+				if(!$fp){
+					$fp = fopen($this->_log_file,"a");
+				}
+				fwrite($fp,$str,strlen($str));
+			}
 
 			if($this->_automatically_log_to_stdout_on_terminal && !$this->_log_to_stdout && posix_isatty(STDOUT)){
 				echo $str; // TODO: colorize
 			}
 		}
 
-		fclose($fp);
+		if($fp){
+			fclose($fp);
+		}
 
-		if(!$_log_file_existed && !preg_match('/^[a-z]+:\/\//i',$this->_log_file)){ // it filters out php://stdout...
+		if($this->_log_to_file && !$_log_file_existed && !preg_match('/^[a-z]+:\/\//i',$this->_log_file)){ // it filters out php://stdout...
 			// when the log file was just created by apache user,
 			// it needs to be also writable by another user
 			// TODO: this needs to be considered carefully
@@ -545,7 +569,7 @@ class Logger{
 	/**
 	 * Alias to flush_all
 	 *
-	 * @return 0
+	 * @return int 0
 	 * @see flush_all()
 	 */
 	function flushAll(){ return $this->flush_all(); }
@@ -665,6 +689,7 @@ class Logger{
 				if(!$this->_silent_mode){
 					echo $this->_build_message($rec);
 				}
+				$this->flush();
 				break;
 			case "stop":
 				$_log = "STOP";
