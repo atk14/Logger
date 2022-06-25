@@ -142,7 +142,7 @@ class Logger{
 	 *
 	 * @var boolean
 	 */
-	private $_disable_start_and_stop_marks = false;
+	protected $_disable_start_and_stop_marks = false;
 
 	/**
 	 * Events with $_no_log_level priority and lower are not sent to output.
@@ -159,20 +159,20 @@ class Logger{
 	 *
 	 * @var integer
 	 */
-	private $_notify_level;
+	protected $_notify_level;
 
 	/**
 	 * Email address for sending logged messages
 	 *
 	 * @var string
 	 */
-	private $_notify_email;
+	protected $_notify_email;
 
 	/**
 	 *
 	 * @var string
 	 */
-	private $_default_notify_email;
+	protected $_default_notify_email;
 
 	/**
 	 * @access private
@@ -191,7 +191,7 @@ class Logger{
 	 *
 	 * @var internal
 	 */
-	private $_started_at_time = null;
+	protected $_started_at_time = null;
 
 	/**
 	 * @access private
@@ -210,14 +210,14 @@ class Logger{
 	 *
 	 * @var boolean
 	 */
-	private $_automatically_log_to_stdout_on_terminal = false;
+	protected $_automatically_log_to_stdout_on_terminal = false;
 
 	/**
 	 * Table with recognized error levels where string labels are assigned to its integer values.
 	 *
 	 * @var array
 	 */
-	private $_levels = array(
+	protected $_levels = array(
 		"-2" => "debug++",
 		"-1" => "debug",
 		"0" => "info",
@@ -234,7 +234,7 @@ class Logger{
 	 *
 	 * @var array
 	 */
-	private $_colors = array(
+	protected $_colors = array(
 		"debug" => "#555555",
 		"info" => "#000000",
 		"warn" => "#c66905",
@@ -339,7 +339,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	private function _determin_configuration(){
+	protected function _determin_configuration(){
 		$this->_reset_configuration();
 		for($i=0;$i<=strlen($this->_prefix);$i++){
 			$this->_find_configuration(substr($this->_prefix,0,$i)."*");
@@ -350,7 +350,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	private function _find_configuration($prefix){
+	protected function _find_configuration($prefix){
 		global $LOGGER_CONFIGURATION;
 
 		if(!isset($LOGGER_CONFIGURATION)){ $LOGGER_CONFIGURATION = array();}
@@ -372,7 +372,7 @@ class Logger{
 	 * Resets configuration to default values.
 	 *
 	 */
-	private function _reset_configuration(){
+	protected function _reset_configuration(){
 		$this->_no_log_level = LOGGER_NO_LOG_LEVEL;
 		$this->_notify_level = LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION;
 		$this->_notify_email = $this->_default_notify_email;
@@ -526,7 +526,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	private function _build_message($rec,&$html_output = ""){
+	protected function _build_message($rec,&$html_output = ""){
 		$html_output = "";
 
 		if(!is_bool(strpos($rec['log'],"\n"))){
@@ -631,7 +631,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	private function _put_log($log,$log_level = 0){
+	protected function _put_log($log,$log_level = 0){
 		settype($log,"string");
 		$log_level = $this->level_to_int($log_level);
 
@@ -755,7 +755,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	private function _get_microtime(){
+	protected function _get_microtime(){
 		list($usec, $sec) = explode(" ", microtime());
 		return ((float)$usec + (float)$sec);
 	}
