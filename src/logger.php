@@ -203,6 +203,12 @@ class Logger{
 	 */
 	var $_log_to_stdout = false;
 
+
+	public $buffer = null;
+
+
+	protected $_log_to_buffer = false;
+
 	/**
 	 * Flag determining if the logged messages are also sent to stdout when a calling script is executed in command line
 	 *
@@ -267,6 +273,7 @@ class Logger{
 			"default_log_file" => LOGGER_DEFAULT_LOG_FILE,
 			"log_to_stdout" => false,
 			"log_to_file" => null,
+			"log_to_buffer" => false,
 			"automatically_log_to_stdout_on_terminal" => false,
 			"default_notify_email" => LOGGER_DEFAULT_NOTIFY_EMAIL,
 		),$options);
@@ -283,9 +290,14 @@ class Logger{
 		$this->set_prefix($options["prefix"]);
 		$this->_log_to_stdout = $options["log_to_stdout"];
 		$this->_log_to_file = $options["log_to_file"];
+		$this->_log_to_buffer = $options["log_to_buffer"];
 		$this->_automatically_log_to_stdout_on_terminal = $options["automatically_log_to_stdout_on_terminal"];
 		$this->_disable_start_and_stop_marks = $options["disable_start_and_stop_marks"];
 		$this->_default_notify_email = $options["default_notify_email"];
+
+		if($this->_log_to_buffer){
+			$this->buffer = new StringBuffer();
+		}
 	}
 
 	/**
@@ -494,6 +506,9 @@ class Logger{
 			$str = $this->_build_message($rec);
 			if($this->_log_to_stdout){
 				echo $str;
+			}
+			if($this->_log_to_buffer){
+				$this->buffer->addString($str);
 			}
 			if($this->_log_to_file){
 				if(!$fp){
