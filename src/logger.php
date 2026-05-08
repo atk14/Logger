@@ -332,7 +332,7 @@ class Logger{
 	 * @return string
 	 */
 	function get_notify_email(){
-		return strlen($this->_notify_email) ? $this->_notify_email : $this->_default_notify_email; 
+		return strlen((string)$this->_notify_email) ? (string)$this->_notify_email : (string)$this->_default_notify_email;
 	}
 
 	/**
