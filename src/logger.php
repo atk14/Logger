@@ -804,7 +804,6 @@ class Logger{
 	 * @ignore
 	 */
 	protected function _get_microtime(){
-		list($usec, $sec) = explode(" ", microtime());
-		return ((float)$usec + (float)$sec);
+		return microtime(true);
 	}
 }
