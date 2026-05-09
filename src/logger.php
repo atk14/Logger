@@ -518,7 +518,7 @@ class Logger{
 				if(!$fp){
 					$fp = fopen($this->_log_file,"a");
 				}
-				fwrite($fp,$str,strlen($str));
+				fwrite($fp,$str);
 			}
 
 			if($this->_automatically_log_to_stdout_on_terminal && !$this->_log_to_stdout && posix_isatty(STDOUT)){
