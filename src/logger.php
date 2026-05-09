@@ -309,35 +309,35 @@ class Logger{
 	 *
 	 * @return string
 	 */
-	function get_log_file(){ return $this->_log_file; }
+	public function get_log_file(){ return $this->_log_file; }
 
 	/**
 	 * Returns the default log file
 	 *
 	 * @return string
 	 */
-	function get_default_log_file(){ return $this->_default_log_file; }
+	public function get_default_log_file(){ return $this->_default_log_file; }
 
 	/**
 	 * Return log level priority
 	 *
 	 * @return integer
 	 */
-	function get_no_log_level(){ return $this->_no_log_level; }
+	public function get_no_log_level(){ return $this->_no_log_level; }
 
 	/**
 	 * Get level for sending email notifications
 	 *
 	 * @return integer
 	 */
-	function get_notify_level(){ return $this->_notify_level; }
+	public function get_notify_level(){ return $this->_notify_level; }
 
 	/**
 	 * Get email address for email notifications.
 	 *
 	 * @return string
 	 */
-	function get_notify_email(){
+	public function get_notify_email(){
 		return strlen((string)$this->_notify_email) ? (string)$this->_notify_email : (string)$this->_default_notify_email;
 	}
 
@@ -347,14 +347,14 @@ class Logger{
 	 * @internal This method also initializes $_notify_level, $_notify_email, $_no_log_level and $_log_file
 	 * @param string $prefix application_mark
 	 */
-	function set_prefix($prefix){
+	public function set_prefix($prefix){
 		$prefix = (string)$prefix;
 		$this->_prefix = $prefix;
 
 		$this->_determine_configuration();
 	}
 
-	function get_prefix(){
+	public function get_prefix(){
 		return $this->_prefix;
 	}
 
@@ -759,7 +759,7 @@ class Logger{
 		return implode("",$buff);
 	}
 
-	function __toString(){
+	public function __toString(){
 		return $this->toString();
 	}
 
