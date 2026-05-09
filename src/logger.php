@@ -272,7 +272,7 @@ class Logger{
 			$options["prefix"] = $prefix_or_options;
 		}
 		
-		$options = array_merge(array(
+		$options += array(
 			"prefix" => "",
 			"disable_start_and_stop_marks" => false,
 			"default_log_file" => LOGGER_DEFAULT_LOG_FILE,
@@ -281,13 +281,14 @@ class Logger{
 			"log_to_buffer" => false,
 			"automatically_log_to_stdout_on_terminal" => false,
 			"default_notify_email" => LOGGER_DEFAULT_NOTIFY_EMAIL,
-		),$options);
+		);
 
 		if(is_null($options["log_to_file"])){
 			$options["log_to_file"] = !$options["log_to_stdout"];
 		}
 
 		$this->_default_log_file = $options["default_log_file"];
+		$this->_default_notify_email = $options["default_notify_email"];
 
 		$this->_reset_configuration();
 		$this->_my_pid = posix_getpid();
@@ -298,7 +299,6 @@ class Logger{
 		$this->_log_to_buffer = $options["log_to_buffer"];
 		$this->_automatically_log_to_stdout_on_terminal = $options["automatically_log_to_stdout_on_terminal"];
 		$this->_disable_start_and_stop_marks = $options["disable_start_and_stop_marks"];
-		$this->_default_notify_email = $options["default_notify_email"];
 
 		if($this->_log_to_buffer){
 			$this->buffer = new StringBuffer();
