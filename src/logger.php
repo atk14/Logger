@@ -127,17 +127,17 @@ class Logger{
 	 * @access private
 	 * @var array
 	 */
-	protected $_log_store = array();
+	protected $_log_store = [];
 
 	/**
 	 * @access private
 	 */
-	protected $_log_store_whole = array();
+	protected $_log_store_whole = [];
 
 	/**
 	 * @access private
 	 */
-	protected $_flushed_log_store = array();
+	protected $_flushed_log_store = [];
 	
 	/**
 	 * @access private
@@ -230,7 +230,7 @@ class Logger{
 	 *
 	 * @var array
 	 */
-	protected $_levels = array(
+	protected $_levels = [
 		"-2" => "debug++",
 		"-1" => "debug",
 		"0" => "info",
@@ -240,20 +240,20 @@ class Logger{
 		"4" => "error",
 		"5" => "security",
 		"6" => "security++",
-	);
+	];
 
 	/**
 	 * Color hex code assigned to recognized error levels
 	 *
 	 * @var array
 	 */
-	protected $_colors = array(
+	protected $_colors = [
 		"debug" => "#555555",
 		"info" => "#000000",
 		"warn" => "#c66905",
 		"error" => "#d00b00",
 		"security" => "#d00b00",
-	);
+	];
 
 	/**
 	 * Constructor
@@ -267,14 +267,14 @@ class Logger{
 	 * - automatically_log_to_stdout_on_terminal (false) - log messages to a log file and also to STDOUT when we are on TERMINAL
 	 * - default_notify_email
 	 */
-	function __construct($prefix_or_options = "",$options = array()){
+	function __construct($prefix_or_options = "",$options = []){
 		if(is_array($prefix_or_options)){
 			$options = $prefix_or_options;
 		}else{
 			$options["prefix"] = $prefix_or_options;
 		}
 		
-		$options += array(
+		$options += [
 			"prefix" => "",
 			"disable_start_and_stop_marks" => false,
 			"default_log_file" => LOGGER_DEFAULT_LOG_FILE,
@@ -283,7 +283,7 @@ class Logger{
 			"log_to_buffer" => false,
 			"automatically_log_to_stdout_on_terminal" => false,
 			"default_notify_email" => LOGGER_DEFAULT_NOTIFY_EMAIL,
-		);
+		];
 
 		if(is_null($options["log_to_file"])){
 			$options["log_to_file"] = !$options["log_to_stdout"];
@@ -372,7 +372,7 @@ class Logger{
 	protected function _find_configuration($prefix){
 		global $LOGGER_CONFIGURATION;
 
-		if(!isset($LOGGER_CONFIGURATION)){ $LOGGER_CONFIGURATION = array();}
+		if(!isset($LOGGER_CONFIGURATION)){ $LOGGER_CONFIGURATION = [];}
 
 		if(isset($LOGGER_CONFIGURATION[$prefix])){
 
@@ -537,7 +537,7 @@ class Logger{
 			chmod($this->_log_file,0666); 
 		}
 		
-		$this->_log_store = array();
+		$this->_log_store = [];
 
 		return 0;
 	}
@@ -582,7 +582,7 @@ class Logger{
 			$this->_send_email_notification();
 		}
 		$this->_flushed_log_store = $this->_log_store_whole;
-		$this->_log_store_whole = array();
+		$this->_log_store_whole = [];
 		return 0;
 	}
 
@@ -655,12 +655,12 @@ class Logger{
 		settype($log,"string");
 		$log_level = $this->level_to_int($log_level);
 
-		$rec = array(
+		$rec = [
 			"date" => date("Y-m-d H:i:s"),
 			"prefix" => $this->_prefix,
 			"log_level" => $log_level,
 			"log" => $log
-		);
+		];
 
 		$this->_log_store[] = $rec;
 
@@ -790,13 +790,13 @@ class Logger{
 
 		$html .= '</pre></body></html>';
 
-		$ar = sendhtmlmail(array(
+		$ar = sendhtmlmail([
 			"plain" => $output,
 			"html" => $html,
 			"subject" => "log report: $this->_prefix, ".date("Y-m-d H:i:s"),
 			"to" => $notify_email,
 			"charset" => "UTF-8",
-		));
+		]);
 
 		return $ar;
 	}

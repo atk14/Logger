@@ -6,12 +6,12 @@ define("SENDMAIL_DO_NOT_SEND_MAILS",true);
 require("../src/logger.php");
 require("../vendor/autoload.php");
 
-$LOGGER_CONFIGURATION = array(
-	"cache_remover" => array(
+$LOGGER_CONFIGURATION = [
+	"cache_remover" => [
 		"log_file" => __DIR__."/log/cache_remover.log",
-	),
-	"import_*" => array(
+	],
+	"import_*" => [
 		"notify_email" => "import.notification@doe.com",
 		"log_file" => __DIR__."/log/import.log",
-	),
-);
+	],
+];
