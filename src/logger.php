@@ -664,6 +664,8 @@ class Logger{
 		);
 
 		$this->_log_store[] = $rec;
+
+		return $rec;
 	}
 
 	/**
