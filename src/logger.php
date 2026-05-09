@@ -61,7 +61,7 @@ defined("LOGGER_NO_LOG_LEVEL") || define("LOGGER_NO_LOG_LEVEL",-99);
  *
  * In case we don't need START and STOP marks to show in the STDOUT, we create the logger instance this way:
  * ```
- * $logger = new Logger("application_mark",array("disable_start_and_stop_marks" => true));
+ * $logger = new Logger("application_mark",["disable_start_and_stop_marks" => true]);
  * ```
  *
  *
@@ -162,7 +162,7 @@ class Logger{
 	 * Threshold to trigger sending notification
 	 *
 	 * When a log message has priority same or higher than $_notify_level, notification is sent to email
-	 * Defailt value is 30 or can be overridden with constant {@link LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION}
+	 * Default value is 99 (disabled) or can be overridden with constant {@link LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION}
 	 *
 	 * @var integer
 	 */
@@ -196,7 +196,7 @@ class Logger{
 	 *
 	 * Value is set during {@link prepared_log("start") prepared_log()} call
 	 *
-	 * @var internal
+	 * @var float|null
 	 */
 	protected $_started_at_time = null;
 
