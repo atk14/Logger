@@ -344,7 +344,7 @@ class Logger{
 	 * @param string $prefix application_mark
 	 */
 	function set_prefix($prefix){
-		settype($prefix,"string");
+		$prefix = (string)$prefix;
 		$this->_prefix = $prefix;
 
 		$this->_determine_configuration();
@@ -469,7 +469,7 @@ class Logger{
 	 * @return int 0
 	 */
 	function set_silent_mode($mode = true){
-		settype($mode,"boolean");
+		$mode = (bool)$mode;
 		$this->_silent_mode = $mode;
 		return 0;
 	}
@@ -651,7 +651,7 @@ class Logger{
 	 * @ignore
 	 */
 	protected function _put_log($log,$log_level = 0){
-		settype($log,"string");
+		$log = (string)$log;
 		$log_level = $this->level_to_int($log_level);
 
 		$rec = [
@@ -674,7 +674,7 @@ class Logger{
 	 * @param string $prefix application_mark
 	 */
 	function start($prefix = "",$message = ""){
-		settype($prefix,"string");
+		$prefix = (string)$prefix;
 		if(strlen($prefix)>0){ $this->set_prefix($prefix); }
 		if(!$this->_disable_start_and_stop_marks){
 			$this->prepared_log("start",$message);
@@ -702,7 +702,7 @@ class Logger{
 	 * @return int 0
 	 */
 	function prepared_log($style,$message = ""){
-		settype($style,"string");
+		$style = (string)$style;
 		switch(strtolower($style)){
 			case "start":
 				$rec = $this->_put_log("START".($message ? ", $message" : ""));
