@@ -9,16 +9,18 @@ defined("LOGGER_DEFAULT_LOG_FILE") || define("LOGGER_DEFAULT_LOG_FILE","/tmp/log
 defined("LOGGER_DEFAULT_NOTIFY_EMAIL") || define("LOGGER_DEFAULT_NOTIFY_EMAIL",""); // "john@doe.com"
 
 /**
+ * The reasonable value can be 2 (warn), 3 (warn++) or 4 (error).
  *
- * 3 .. warn+
- * 4 .. error
+ * 99 means that no email notification will be sent.
  */
-defined("LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION") || define("LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION",30);
+defined("LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION") || define("LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION",99);
 
 /**
- * -1 .. debug 
+ * The reasonable value can be -1 (debug).
+ *
+ * -99 means that everything will ne logged into a log file.
  */
-defined("LOGGER_NO_LOG_LEVEL") || define("LOGGER_NO_LOG_LEVEL",-30);
+defined("LOGGER_NO_LOG_LEVEL") || define("LOGGER_NO_LOG_LEVEL",-99);
 
 /**
  * Class for events logging.
