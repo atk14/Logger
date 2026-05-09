@@ -579,7 +579,7 @@ class Logger{
 	 */
 	function flush_all(){
 		$this->flush();
-		if($this->_notify_level_reached && $this->_notify_email!=""){
+		if($this->_notify_level_reached && $this->get_notify_email()!=""){
 			$this->_send_email_notification();
 		}
 		$this->_flushed_log_store = $this->_log_store_whole;
