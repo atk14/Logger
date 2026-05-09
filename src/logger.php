@@ -754,7 +754,7 @@ class Logger{
 			}
 		}
 
-		return join("\n",$buff);
+		return join("",$buff);
 	}
 
 	function __toString(){
