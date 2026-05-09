@@ -100,7 +100,7 @@ class Logger{
 	/**
 	 * Application mark
 	 *
-	 * @access private
+	 * @access protected
 	 * @var string
 	 */
 	protected $_prefix = "";
@@ -108,7 +108,7 @@ class Logger{
 	/**
 	 * Name of output file
 	 *
-	 * @access private
+	 * @access protected
 	 * @var string
 	 */
 	protected $_log_file;
@@ -124,23 +124,23 @@ class Logger{
 	/**
 	 * Internal events storage.
 	 *
-	 * @access private
+	 * @access protected
 	 * @var array
 	 */
 	protected $_log_store = [];
 
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_log_store_whole = [];
 
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_flushed_log_store = [];
 	
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_silent_mode = true;
 
@@ -154,7 +154,7 @@ class Logger{
 	/**
 	 * Events with $_no_log_level priority and lower are not sent to output.
 	 *
-	 * @access private
+	 * @access protected
 	 */
 	protected $_no_log_level;
 
@@ -182,12 +182,12 @@ class Logger{
 	protected $_default_notify_email;
 
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_notify_level_reached = false;
 
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_my_pid;
 
@@ -201,12 +201,12 @@ class Logger{
 	protected $_started_at_time = null;
 
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_log_to_file = true;
 
 	/**
-	 * @access private
+	 * @access protected
 	 */
 	protected $_log_to_stdout = false;
 
