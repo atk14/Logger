@@ -486,9 +486,6 @@ class Logger{
 
 		$_log_file_existed = file_exists($this->_log_file);
 
-		if($this->_log_to_file){
-		}
-
 		if(!$this->_notify_level_reached){
 			foreach($this->_log_store as $rec){
 				if($rec['log_level']>=$this->_notify_level){
