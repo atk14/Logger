@@ -115,9 +115,6 @@ class Logger{
 
 	/**
 	 * Default filename where to output log messages
-	 *
-	 * @todo should be private.
-	 * @todo correct tests in atk14/test/tc_robot.php. they use this property
 	 */
 	protected $_default_log_file;
 
@@ -573,7 +570,6 @@ class Logger{
 	 * Flushes events to output and also to notify email.
 	 *
 	 * @return int 0
-	 * @todo some more info about notify emails
 	 */
 	function flush_all(){
 		$this->flush();
@@ -698,18 +694,17 @@ class Logger{
 	 *
 	 * Preferred methods to call are {@link start()} and {@link stop()}
 	 *
-	 * @todo explain @param $style
+	 * @param string $type "start" or "stop"
+	 * @param string $message default values is ""
 	 * @return int 0
 	 */
-	function prepared_log($style,$message = ""){
-		$style = (string)$style;
-		switch(strtolower($style)){
+	function prepared_log($type,$message = ""){
+		$type = (string)$type;
+		$rec = null;
+		switch(strtolower($type)){
 			case "start":
 				$rec = $this->_put_log("START".($message ? ", $message" : ""));
 				$this->_started_at_time = $this->_get_microtime();
-				if(!$this->_silent_mode){
-					echo $this->_build_message($rec);
-				}
 				$this->flush();
 				break;
 			case "stop":
@@ -724,11 +719,13 @@ class Logger{
 					$_log .= ", $message";
 				}
 				$rec = $this->_put_log($_log);
-				if(!$this->_silent_mode){
-					echo $this->_build_message($rec);
-				}
 				break;
 		}
+		
+		if($rec && !$this->_silent_mode && !$this->_log_to_stdout){
+			echo $this->_build_message($rec);
+		}
+
 		return 0;
 	}
 
