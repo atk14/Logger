@@ -101,7 +101,7 @@ class Logger{
 	 * @access private
 	 * @var string
 	 */
-	var $_prefix = "";
+	protected $_prefix = "";
 
 	/**
 	 * Name of output file
@@ -109,7 +109,7 @@ class Logger{
 	 * @access private
 	 * @var string
 	 */
-	var $_log_file;
+	protected $_log_file;
 
 	/**
 	 * Default filename where to output log messages
@@ -117,7 +117,7 @@ class Logger{
 	 * @todo should be private.
 	 * @todo correct tests in atk14/test/tc_robot.php. they use this property
 	 */
-	var $_default_log_file;
+	protected $_default_log_file;
 
 	/**
 	 * Internal events storage.
@@ -125,22 +125,22 @@ class Logger{
 	 * @access private
 	 * @var array
 	 */
-	var $_log_store = array();
+	protected $_log_store = array();
 
 	/**
 	 * @access private
 	 */
-	var $_log_store_whole = array();
+	protected $_log_store_whole = array();
 
 	/**
 	 * @access private
 	 */
-	var $_flushed_log_store = array();
+	protected $_flushed_log_store = array();
 	
 	/**
 	 * @access private
 	 */
-	var $_silent_mode = true;
+	protected $_silent_mode = true;
 
 	/**
 	 * Flag to control logging of start and stop messages.
@@ -154,7 +154,7 @@ class Logger{
 	 *
 	 * @access private
 	 */
-	var $_no_log_level;
+	protected $_no_log_level;
 
 	/**
 	 * Threshold to trigger sending notification
@@ -182,12 +182,12 @@ class Logger{
 	/**
 	 * @access private
 	 */
-	var $_notify_level_reached = false;
+	protected $_notify_level_reached = false;
 
 	/**
 	 * @access private
 	 */
-	var $_my_pid;
+	protected $_my_pid;
 
 	/**
 	 * Timestamp of logging start
@@ -201,12 +201,12 @@ class Logger{
 	/**
 	 * @access private
 	 */
-	var $_log_to_file = true;
+	protected $_log_to_file = true;
 
 	/**
 	 * @access private
 	 */
-	var $_log_to_stdout = false;
+	protected $_log_to_stdout = false;
 
 
 	public $buffer = null;
