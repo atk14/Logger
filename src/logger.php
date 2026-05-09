@@ -312,6 +312,13 @@ class Logger{
 	function get_log_file(){ return $this->_log_file; }
 
 	/**
+	 * Returns the default log file
+	 *
+	 * @return string
+	 */
+	function get_default_log_file(){ return $this->_default_log_file; }
+
+	/**
 	 * Return log level priority
 	 *
 	 * @return integer
