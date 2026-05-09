@@ -548,11 +548,11 @@ class Logger{
 	protected function _build_message($rec,&$html_output = ""){
 		$html_output = "";
 
-		if(!is_bool(strpos($rec['log'],"\n"))){
+		if(strpos($rec['log'],"\n") !== false){
 			$_ar = explode("\n",$rec['log']);
 			$rec['log'] = "";
-			for($i=0;$i<count($_ar);$i++){
-				$rec['log']	.= "\n\t".$_ar[$i];
+			foreach($_ar as $line){
+				$rec['log'] .= "\n\t".$line;
 			}
 		}
 
