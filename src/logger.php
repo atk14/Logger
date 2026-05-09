@@ -348,7 +348,7 @@ class Logger{
 		settype($prefix,"string");
 		$this->_prefix = $prefix;
 
-		$this->_determin_configuration();
+		$this->_determine_configuration();
 	}
 
 	function get_prefix(){
@@ -358,7 +358,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	protected function _determin_configuration(){
+	protected function _determine_configuration(){
 		$this->_reset_configuration();
 		for($i=0;$i<=strlen($this->_prefix);$i++){
 			$this->_find_configuration(substr($this->_prefix,0,$i)."*");
@@ -717,9 +717,9 @@ class Logger{
 				$_log = "STOP";
 				if(isset($this->_started_at_time)){
 					$_stopped = $this->_get_microtime();
-					$_runing_time = $_stopped - $this->_started_at_time;
-					$_minutes = (floor($_runing_time/60.0));
-					$_log .= sprintf(", running time: %d min %0.2f sec",$_minutes,($_runing_time-($_minutes*60)));
+					$_running_time = $_stopped - $this->_started_at_time;
+					$_minutes = (floor($_running_time/60.0));
+					$_log .= sprintf(", running time: %d min %0.2f sec",$_minutes,($_running_time-($_minutes*60)));
 				}
 				if($message){
 					$_log .= ", $message";
