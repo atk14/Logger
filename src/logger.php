@@ -363,7 +363,8 @@ class Logger{
 	 */
 	protected function _determine_configuration(){
 		$this->_reset_configuration();
-		for($i=0;$i<=strlen($this->_prefix);$i++){
+		$prefix_len = strlen($this->_prefix);
+		for($i=0;$i<=$prefix_len;$i++){
 			$this->_find_configuration(substr($this->_prefix,0,$i)."*");
 		}
 		$this->_find_configuration($this->_prefix);
