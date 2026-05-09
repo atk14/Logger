@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Logger will be documented in this file.
 
+[0.3] - 2026-05-09
+------------------
+
+* Source code wes refactored and fixed
+
 [0.2.1] - 2024-05-15
 --------------------
 
