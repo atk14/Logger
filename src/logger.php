@@ -18,7 +18,7 @@ defined("LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION") || define("LOGGER_MIN_LEVEL_F
 /**
  * The reasonable value can be -1 (debug).
  *
- * -99 means that everything will ne logged into a log file.
+ * -99 means that everything will be logged into a log file.
  */
 defined("LOGGER_NO_LOG_LEVEL") || define("LOGGER_NO_LOG_LEVEL",-99);
 
