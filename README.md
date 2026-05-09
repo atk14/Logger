@@ -1,6 +1,8 @@
 ATK14 Logger
 ============
 
+[![Tests](https://github.com/atk14/Logger/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/atk14/Logger/actions/workflows/tests.yml)
+
 ATK14 Logger provides logging infrastructure for the ATK14 Framework.
 
 Basic usage
