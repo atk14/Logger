@@ -101,25 +101,25 @@ class TcLogger extends TcBase{
 	}
 
 	function test__send_email_notification(){
-		$logger = new Logger(["default_notify_email" => "samantha@doe.com"]);
+		$logger = new LoggerProxy(["default_notify_email" => "samantha@doe.com"]);
 
 		$logger->flush();
-		$this->assertEquals(null,$logger->_send_email_notification());
+		$this->assertEquals(null,$logger->send_email_notification());
 
 		$logger->error("Something went wrong");
 		$logger->flush();
 
-		$mail_ar = $logger->_send_email_notification();
+		$mail_ar = $logger->send_email_notification();
 		$this->assertTrue(is_array($mail_ar));
 		$this->assertEquals("samantha@doe.com",$mail_ar["to"]);
 
 		// Logger without notification email address
-		$logger = new Logger(["default_notify_email" => ""]);
+		$logger = new LoggerProxy(["default_notify_email" => ""]);
 
 		$logger->error("Something went wrong");
 		$logger->flush();
 
-		$this->assertEquals(null,$logger->_send_email_notification());
+		$this->assertEquals(null,$logger->send_email_notification());
 	}
 
 	function test_get_notify_email(){

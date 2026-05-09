@@ -766,7 +766,7 @@ class Logger{
 	/**
 	 * @ignore
 	 */
-	function _send_email_notification(){
+	protected function _send_email_notification(){
 		$notify_email = $this->get_notify_email();
 
 		if(!strlen($notify_email)){ return;}

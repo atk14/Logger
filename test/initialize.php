@@ -4,6 +4,7 @@ define("LOGGER_DEFAULT_LOG_FILE",__DIR__."/log/default.log");
 define("SENDMAIL_DO_NOT_SEND_MAILS",true);
 
 require("../src/logger.php");
+require("./logger_proxy.php");
 require("../vendor/autoload.php");
 
 $LOGGER_CONFIGURATION = [
