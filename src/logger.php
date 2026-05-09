@@ -786,7 +786,6 @@ class Logger{
 		$html = '<html><body><pre>'.$output;
 		
 		foreach($this->_log_store_whole as $rec){	
-			// TODO: vymyslet tady nejaky uspornejsi format (bez prefixu a pidu)
 			$output .= $this->_build_message($rec,$html_snippet);
 			$html .= $html_snippet;
 		}
