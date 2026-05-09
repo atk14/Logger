@@ -752,7 +752,7 @@ class Logger{
 			}
 		}
 
-		return join("",$buff);
+		return implode("",$buff);
 	}
 
 	function __toString(){
