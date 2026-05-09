@@ -344,7 +344,6 @@ class Logger{
 	 * @param string $prefix application_mark
 	 */
 	function set_prefix($prefix){
-		global $LOGGER_CONFIGURATION;
 		settype($prefix,"string");
 		$this->_prefix = $prefix;
 
