@@ -57,7 +57,7 @@ defined("LOGGER_NO_LOG_LEVEL") || define("LOGGER_NO_LOG_LEVEL",-99);
  * ```
  * $logger->put_log("unknown exception occured", 150);
  * ```
- * Set constant LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION to specify from which priority messages are sent te email.
+ * Set constant LOGGER_MIN_LEVEL_FOR_EMAIL_NOTIFICATION to specify from which priority messages are sent to email.
  *
  * In case we don't need START and STOP marks to show in the STDOUT, we create the logger instance this way:
  * ```
@@ -695,7 +695,7 @@ class Logger{
 	 * Preferred methods to call are {@link start()} and {@link stop()}
 	 *
 	 * @param string $type "start" or "stop"
-	 * @param string $message default values is ""
+	 * @param string $message default value is ""
 	 * @return int 0
 	 */
 	function prepared_log($type,$message = ""){
