@@ -484,7 +484,7 @@ class Logger{
 	 * @return int 0
 	 */
 	function flush(){
-		if(sizeof($this->_log_store)==0){ return 0; }
+		if(count($this->_log_store)==0){ return 0; }
 
 		$_log_file_existed = file_exists($this->_log_file);
 
@@ -551,7 +551,7 @@ class Logger{
 		if(!is_bool(strpos($rec['log'],"\n"))){
 			$_ar = explode("\n",$rec['log']);
 			$rec['log'] = "";
-			for($i=0;$i<sizeof($_ar);$i++){
+			for($i=0;$i<count($_ar);$i++){
 				$rec['log']	.= "\n\t".$_ar[$i];
 			}
 		}
@@ -767,7 +767,7 @@ class Logger{
 		$notify_email = $this->get_notify_email();
 
 		if(!strlen($notify_email)){ return;}
-		if(!sizeof($this->_log_store_whole)){ return; }
+		if(!count($this->_log_store_whole)){ return; }
 
 		$max_level = null;
 		foreach($this->_log_store_whole as $rec){
